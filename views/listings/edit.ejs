@@ -8,12 +8,34 @@
     <h2>Edit your Listing</h2>
     <form method="POST" action="/listing/<%=listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="listing[title]" value="<%= listing.title%>" class="form-control" required>
+        <div class="row">
+            <div class="mb-3 col-md-7">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="listing[title]" value="<%= listing.title%>" class="form-control" required>
 
-            <div class="valid-feedback">Title Looks Good!</div>
-        </div> 
+                <div class="valid-feedback">Title Looks Good!</div>
+            </div>
+
+                <div class="mb-3 col-md-5">
+                    <label for="category" class="form-label"><b>Category</b></label>
+                    <select class="form-select form-select mb-2" name="listing[category]" required>
+                        <option selected>Select Category</option>
+                        <option value="Trending">Trending</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Room">Room</option>
+                        <option value="Amazing Pools">Amazing Pools</option>
+                        <option value="Castles">Castles</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Arctic">Arctic</option>
+                        <option value="Domes">Domes</option>
+                        <option value="Boats">Boats</option>
+                      </select>
+    
+                    <div class="invalid-feedback">Category Doesnot Exists!</div>
+               
+                </div> 
+        </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>

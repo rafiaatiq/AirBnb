@@ -24,12 +24,61 @@ module.exports.showListing = async (req,res) => {
     res.render("listings/show.ejs", {listing});
 }
 
+module.exports.TrendingListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Trending']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.FarmsListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Farms']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.IconicCitiesListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Iconic Cities']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.RoomsListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Rooms']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.MountainsListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Mountains']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.AmazingPoolsListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Amazing Pools']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.CastlesListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Castles']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.CampingListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Camping']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.ArcticListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Arctic']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.DomesListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Domes']}});
+    res.render("listings/index.ejs", {allListings});
+}
+module.exports.BoatsListings = async (req, res ) => {
+    const allListings= await Listing.find({category : {$in : ['Boats']}});
+    res.render("listings/index.ejs", {allListings});
+}
+
 module.exports.createListing = async (req,res, next) => {
+    let {category} = req.body.listing;
+    console.log(category);
+
+    if(['Iconic Cities','Trending','Rooms','Mountains','Amazing Pools', 'Castles', 'Camping', 'Farms', 'Arctic', 'Domes', 'Boats'].includes(category)) {
         let response =  await geocodingClient.forwardGeocode({
             query: req.body.listing.location,
             limit: 1,
           })
-            .send()
+        .send()
             
     
     
@@ -45,13 +94,16 @@ module.exports.createListing = async (req,res, next) => {
         newListing.geometry = response.body.features[0].geometry;
 
         
-
-        
         let savedListing = await newListing.save();
-        console.log(savedListing);
+        console.log(savedListing); 
         
         req.flash("success", "New Listing Created!");  // connect-flash
         res.redirect("/listing");
+        return;
+    } else {
+        res.send("some error occured");
+        return;
+    }        
      
 }
 

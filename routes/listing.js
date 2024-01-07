@@ -21,6 +21,42 @@ router.route("/")
 router.get("/new", isLoggedIn,ListingController.renderNewForm)
 
 
+router.route("/TrendingFilters")
+//Show Listing 
+.get(wrapAsync(ListingController.TrendingListings))
+
+router.route("/FarmsFilters")
+.get(wrapAsync(ListingController.FarmsListings))
+
+router.route("/IconicCitiesFilters")
+.get(wrapAsync(ListingController.IconicCitiesListings))
+
+router.route("/RoomsFilters")
+.get(wrapAsync(ListingController.RoomsListings))
+
+router.route("/MountainsFilters")
+.get(wrapAsync(ListingController.MountainsListings))
+
+router.route("/AmazingPoolsFilters")
+.get(wrapAsync(ListingController.AmazingPoolsListings))
+
+router.route("/CastlesFilters")
+.get(wrapAsync(ListingController.CastlesListings))
+
+router.route("/CampingFilters")
+.get(wrapAsync(ListingController.CampingListings))
+
+router.route("/ArcticFilters")
+.get(wrapAsync(ListingController.ArcticListings))
+
+router.route("/DomesFilters")
+.get(wrapAsync(ListingController.DomesListings))
+
+router.route("/BoatsFilters")
+.get(wrapAsync(ListingController.BoatsListings))
+
+
+
 router.route("/:id")
 // Show route Read data
 .get(wrapAsync(ListingController.showListing))
@@ -33,6 +69,8 @@ router.route("/:id")
 
 // Edit route    // servers a form
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(ListingController.renderEditForm));
+
+
 
 
 module.exports = router;

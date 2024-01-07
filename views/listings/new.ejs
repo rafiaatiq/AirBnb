@@ -17,7 +17,19 @@
 
             <div class="mb-3 col-md-5">
                 <label for="category" class="form-label"><b>Category</b></label>
-                <input type="text" class="form-control" name="listing[category]" placeholder="Add a category" required>
+                <select class="form-select form-select mb-2" name="listing[category]" required>
+                    <option selected>Select Category</option>
+                    <option value="Trending">Trending</option>
+                    <option value="Mountains">Mountains</option>
+                    <option value="Room">Room</option>
+                    <option value="Amazing Pools">Amazing Pools</option>
+                    <option value="Castles">Castles</option>
+                    <option value="Camping">Camping</option>
+                    <option value="Farms">Farms</option>
+                    <option value="Arctic">Arctic</option>
+                    <option value="Domes">Domes</option>
+                    <option value="Boats">Boats</option>
+                  </select>
 
                 <div class="invalid-feedback">Category Doesnot Exists!</div>
             </div>
